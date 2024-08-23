@@ -8,7 +8,7 @@ export class Order {
     id: number;
 
     @ManyToOne(() => User, (user) => user.orders)
-    userId: User;
+    user: User;
 
     @Column()
     products: string;
@@ -16,7 +16,7 @@ export class Order {
     @Column()
     totalPrice: number;
 
-    @ManyToMany(() => Product, product => product.orders)
+    @ManyToMany(() => Product)
     @JoinTable()
     product:Product[]
 

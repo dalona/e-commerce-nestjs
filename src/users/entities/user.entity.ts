@@ -1,4 +1,4 @@
-import { IsEmail, IsIn, isIn } from "class-validator";
+import { IsEmail, IsIn } from "class-validator";
 import { Order } from "src/orders/entities/order.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -8,16 +8,14 @@ export class User {
     id : number;
     
     @Column()
-    @IsEmail({}, { message : "It has to be a valid email address"})
     email: string;
 
     @Column()
     password: string;
     
-    @Column({default : "user"})
-    @IsIn(["user","admin"],{message: "The role must be 'user' or 'admin'"})
+    @Column()
     role: string;
 
-    @OneToMany(() => Order, order => order.userId)
+    @OneToMany(() => Order, order => order.user)
     orders: Order[]
 }

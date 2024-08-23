@@ -16,7 +16,4 @@ export class Product {
     @Column()
     description: string;
 
-    @ManyToMany(() => Order, order => order.products)
-    @JoinTable()
-    orders:Order[]
 }
